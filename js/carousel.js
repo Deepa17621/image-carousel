@@ -1,4 +1,7 @@
 const carouselWrapper = document.querySelector(".carousel-wrapper");
+let interval;
+let intervalForProgress;
+
 const progressBars = [
     document.querySelector("#bar1"),
     document.querySelector("#bar2"),
@@ -15,14 +18,16 @@ const images = [
     document.querySelector("#image-5")
 ]
 let currentIndex = 0;
-
+function clickedImage(params) {
+    
+}
 if (currentIndex == 0) {
 
     displayImage(images, currentIndex);
     currentIndex++;
 
     // Increase progress every 40 milliseconds
-    let intervalForProgress = setInterval(increaseProgress, 46);
+    intervalForProgress = setInterval(increaseProgress, 46);
     let value = 0;
 
     function increaseProgress() {
@@ -33,16 +38,17 @@ if (currentIndex == 0) {
             clearInterval(intervalForProgress);
         }
     }
-    const interval = setInterval(changeImage, 5000);
+    interval = setInterval(changeImage, 5000);
 }
 
 function changeImage(params) {
     if (currentIndex >= images.length) {
-        currentIndex = 0;
+        // currentIndex = 0;
+        clearInterval(interval)
         return;
     }
     // Increase progress every 40 milliseconds
-    let intervalForProgress = setInterval(increaseProgress, 45);
+    intervalForProgress = setInterval(increaseProgress, 45);
     let value = 0;
 
     function increaseProgress() {
@@ -50,7 +56,7 @@ function changeImage(params) {
             value++;
             progressBars[currentIndex - 1].value = value;
         } else {
-            clearInterval(intervalForcurrentIndex);
+            clearInterval(intervalForProgress);
         }
     }
     displayImage(images, currentIndex);
@@ -63,5 +69,7 @@ function displayImage(images, currentIndex) {
         img.setAttribute("onclick", `clickedImage("${img}", "${currentIndex}")`);
     });
 }
+
+
 
 

@@ -13,6 +13,7 @@
     background-color: rgb(255, 255, 255, 0.4);
     margin: auto;
     position: relative;
+    /* display: none; */
 }
 .progress-bar-wrapper{
     position: absolute;
